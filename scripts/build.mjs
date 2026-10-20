@@ -1,0 +1,10 @@
+import {build} from 'esbuild';
+import {cp,mkdir,readFile,rm,writeFile} from 'node:fs/promises';
+await rm('dist',{recursive:true,force:true});
+await mkdir('dist',{recursive:true});
+await cp('public','dist',{recursive:true});
+await build({entryPoints:['src/main.jsx'],bundle:true,outfile:'dist/app.js',format:'iife',minify:true,jsx:'automatic',target:['es2022'],define:{'process.env.NODE_ENV':'"production"'},legalComments:'eof'});
+const template=await readFile('index.html','utf8');
+await writeFile('dist/index.html',template.replace('<script type="module" src="/src/main.jsx"></script>','<link rel="stylesheet" href="./app.css"><script defer src="./app.js"></script>'));
+await writeFile('dist/.nojekyll','');
+console.log('React build ready in dist/ — portable files for GitHub Pages and local preview.');
