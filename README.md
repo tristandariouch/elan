@@ -106,3 +106,7 @@ Statuts distincts : en préparation, envoyée, retenue pour un entretien, offre 
 L’accueil présente désormais trois entrées : objectif connu, réorientation, offre déjà trouvée. Les deux premières partagent le profil ; l’offre peut être ajoutée d’abord dans une page dédiée avec un brouillon persistant. Le profil terminé revient à l’offre concernée, à l’orientation ou au catalogue suivant le choix initial. L’ancien `#trial` ouvre le profil commun. Les activités souhaitées, activités à éviter et secteurs restent éditables. La vidéo, l’exemple illustratif avant/après et les tarifs restent sur l’accueil ; l’accès aux tarifs reste dans le menu.
 
 À la confirmation des prochains envois, une copie distincte du CV et de la lettre est conservée dans `sentDocuments`. Les modifications ultérieures du brouillon ne l’écrasent pas ; l’export d’entretien donne priorité au CV et à la lettre de cette copie. Les dossiers déjà envoyés avant ce changement n’obtiennent pas rétroactivement une copie prétendue exacte. Les trois points d’entrée, la conservation d’une annonce importée et la séparation des documents envoyés sont couverts par les vérifications.
+
+## Navigation
+
+TanStack Router gère les routes statiques et les dossiers (`/offer/$id`, `/dossier/$id`, `/send/$id`, `/archive/$id`, `/interview/$id`). Le mode hash conserve la compatibilité GitHub Pages : `#/profile`. Les anciens liens `#profile` sont normalisés à l’ouverture. Le profil et les candidatures restent conservés dans le navigateur. Les liens inconnus et les dossiers absents affichent une page de retour.

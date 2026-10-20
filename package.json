@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
+    "@tanstack/react-router": "^1.120.5",
     "jspdf": "^4.2.1",
     "mammoth": "^1.13.0",
     "pdfjs-dist": "^6.4.299",
