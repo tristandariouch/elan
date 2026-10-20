@@ -24,7 +24,7 @@ React et React DOM animent les écrans. Vite sert le projet en développement ; 
 - `src/App.jsx` : composants de navigation, accueil, orientation, profil, offres, documents, envoi et suivi.
 - `src/model.js` : données de démonstration, périodes, tri, migration des profils et pistes d’orientation.
 - `src/styles.css` : interface et adaptations mobiles.
-- `public/assets/` : logo et mascotte.
+- `public/assets/` : logo abstrait, vidéo originale, sous-titres et transcription.
 - `tests/` et `scripts/check-ui.mjs` : tests des données et des interactions React.
 - `docs/` : version compilée à publier avec GitHub Pages.
 
@@ -40,4 +40,12 @@ Offres fictives, orientation guidée et matching illustratif. Aucune collecte d�
 
 Les données restent dans le navigateur (`elan-v3`). Les profils de l’ancien prototype sont repris. L’histoire personnelle est facultative, hors classement des offres et insérée dans une lettre seulement sur choix explicite dans ce dossier.
 
-La mascotte est une illustration générée pour le projet et le logo est un SVG original. Ce prototype n’est pas une validation juridique pour une mise en production avec de vraies données.
+Le logo est un SVG original inspiré des bois de l’élan. La vidéo de présentation est une création originale, avec une voix française synthétique et des exemples fictifs. Le lecteur se trouve dans « Découvrir Élan ». Ce prototype n’est pas une validation juridique pour une mise en production avec de vraies données.
+
+## Connexion et contact
+
+Les écrans sont prêts et le code de connexion utilise Supabase Auth (Google, Apple, LinkedIn OIDC). Sans configuration, les boutons restent désactivés : aucun compte fictif n’est créé. Renseigner uniquement les variables publiques de `.env.example` après configuration des fournisseurs et de leur URL de retour dans Supabase. Aucun accès à Gmail ou import LinkedIn n’est demandé. Le profil local n’est pas encore synchronisé au compte.
+
+`VITE_CONTACT_EMAIL` reste vide tant qu’aucune adresse publique n’est choisie. Le formulaire prépare alors un message copiable sans l’envoyer ni l’enregistrer. Avec une adresse configurée, il ouvre la messagerie du visiteur, qui confirme lui-même l’envoi.
+
+L’offre envisagée est de cinq candidatures gratuites puis un abonnement. Le quota, la facturation et les tarifs ne sont pas activés. Un contrôle serveur est nécessaire avant lancement commercial. Aucune clé OpenAI n’est configurée et aucun appel IA payant n’est effectué.

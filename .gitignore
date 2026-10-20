@@ -2,3 +2,6 @@ node_modules/
 work/
 .DS_Store
 .checks/
+.env
+.env.local
+.env.*.local
