@@ -1,0 +1,4 @@
+const norm=x=>String(x||'').normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase();
+export const provinces=['Bruxelles-Capitale','Brabant wallon','Hainaut','Liège','Luxembourg','Namur','Anvers','Brabant flamand','Flandre occidentale','Flandre orientale','Limbourg'];
+export function locationFor(job){if(job.country)return {country:job.country,provinces:job.provinces||[]};if(job.researched&&!job.feed){const t=norm(job.city),ps=[];if(/bruxelles|ixelles|saint-gilles/.test(t))ps.push('Bruxelles-Capitale');if(t.includes('namur'))ps.push('Namur');if(t.includes('liege'))ps.push('Liège');return {country:ps.length?'BE':null,provinces:ps}}return {country:null,provinces:[]}}
+export function withinGeography(job,p){const geo=locationFor(job),country=p.searchCountry||'BE';if(country!=='ALL'&&geo.country!==country)return false;const selected=p.searchProvinces||[];if(country==='BE'&&selected.length&&!selected.some(x=>geo.provinces.includes(x)))return false;return true}
