@@ -36,7 +36,7 @@ Après modification : `pnpm build`, puis copier le contenu de `dist/` dans `docs
 
 ## Périmètre du prototype
 
-Offres fictives, orientation guidée et matching illustratif. Aucune collecte d’annonces, IA conversationnelle, écoute du microphone ou boîte mail connectée. Les documents sont modifiables et exportables en texte ; aucun envoi automatique.
+Offres fictives, orientation guidée et matching illustratif. Aucune collecte d’annonces, IA conversationnelle, écoute du microphone ou boîte mail connectée. Les dossiers proposent des textes modifiables. L’atelier CV lit les PDF avec texte, les Word .docx et les .txt localement ; il propose deux modèles et un export PDF avec texte sélectionnable. Aucun envoi automatique.
 
 Les données restent dans le navigateur (`elan-v3`). Les profils de l’ancien prototype sont repris. L’histoire personnelle est facultative, hors classement des offres et insérée dans une lettre seulement sur choix explicite dans ce dossier.
 
@@ -49,3 +49,11 @@ Les écrans sont prêts et le code de connexion utilise Supabase Auth (Google, A
 `VITE_CONTACT_EMAIL` reste vide tant qu’aucune adresse publique n’est choisie. Le formulaire prépare alors un message copiable sans l’envoyer ni l’enregistrer. Avec une adresse configurée, il ouvre la messagerie du visiteur, qui confirme lui-même l’envoi.
 
 L’offre envisagée est de cinq candidatures gratuites puis un abonnement. Le quota, la facturation et les tarifs ne sont pas activés. Un contrôle serveur est nécessaire avant lancement commercial. Aucune clé OpenAI n’est configurée et aucun appel IA payant n’est effectué.
+
+## Atelier CV
+
+Dans Mon profil, ouvrir « Importer et retravailler mon CV », ou aller à `#cv`. Le PDF est lu par PDF.js ; le Word par Mammoth (texte brut uniquement). Les fichiers et aperçus restent dans IndexedDB sur cet appareil ; le brouillon et les rubriques sont conservés dans `elan-v3`. Aucun document n’est envoyé à un serveur. Ne jamais publier un vrai CV dans `public/`, `docs/`, les tests ou le dépôt.
+
+Limites : 12 Mo, 12 pages PDF, pas d’OCR pour les scans et pas de prise en charge du vieux format .doc. La répartition des rubriques repose sur des règles et doit être vérifiée. La mise à jour du profil nécessite un clic de validation. Les niveaux de langue ambigus ne sont pas convertis en une certification. Les deux modèles exportent avec jsPDF ; pour les écritures non latines, utiliser l’impression du navigateur. Les consignes de réécriture sont conservées mais ne sont pas exécutées par une IA.
+
+Les versions de PDF.js dans `public/assets/pdfjs/` sont celles du paquet verrouillé et conservent sa licence.
