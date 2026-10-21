@@ -1,23 +1,40 @@
-# Élan — React
+# Élan
 
-Prototype React pour trouver sa direction, valoriser son parcours et suivre ses candidatures.
+Application React avec **Bun 1.4.3**, **Vite 8**, **TanStack Router**, **TypeScript 7.0.2** et **Oxlint**.
 
 ## Démarrer
 
-```sh
-pnpm install
-pnpm dev
-```
-
-## Vérifier et construire
+Installer [Bun](https://bun.sh/docs/installation), puis :
 
 ```sh
-pnpm test
-pnpm test:ui
-pnpm build
+bun install --frozen-lockfile
+bun run dev
 ```
 
-React et React DOM animent les écrans. Vite sert le projet en développement ; esbuild produit une version statique portable, utilisable sans serveur ou sur GitHub Pages.
+Le site s’ouvre à `http://127.0.0.1:4180/`. Le connecteur Forem fonctionne aussi dans Vite. Pour cette machine, un exécutable Bun local est disponible dans `.tools/bun` (ignoré par Git).
+
+## Commandes
+
+```sh
+bun run lint          # Oxlint, avertissements bloquants
+bun run typecheck     # Compilateur natif TypeScript 7
+bun run test          # Tests avec Bun
+bun run test:ui       # Navigation et interactions React
+bun run check         # Ensemble des vérifications et compilation
+bun run build         # Production Vite dans dist/
+bun run preview       # Tester la compilation sur le port 4180
+bun run build:pages   # Préparer docs/ pour GitHub Pages
+```
+
+`bun.lock` est le verrou de référence. Les fichiers pnpm ont été retirés. Node >=22.12 reste compatible avec les outils qui utilisent Node ; les scripts du projet s’exécutent avec Bun.
+
+## TypeScript et lint
+
+`src/main.tsx`, `src/router.tsx` et `vite.config.ts` sont typés avec `strict: true`. `allowJs: true` et `checkJs: false` permettent une migration progressive des composants existants. Les fichiers JS ne sont donc pas encore vérifiés entièrement par TypeScript.
+
+Oxlint vérifie les règles de correction JavaScript, TypeScript et React. Les règles de migration React Compiler (`refs`, `set-state-in-effect`), l’exhaustivité des dépendances des effets et les variables inutilisées sont temporairement désactivées dans `.oxlintrc.json` pour le code existant ; les règles de correction restantes bloquent le lint.
+
+Le serveur local et Vite partagent `scripts/forem-api.mjs`. Les variables publiques Vite sont documentées dans `.env.example` ; aucune clé privée ne doit être placée dans une variable `VITE_*`.
 
 ## Organisation
 
@@ -32,7 +49,7 @@ React et React DOM animent les écrans. Vite sert le projet en développement ; 
 
 Dans **Settings → Pages**, sélectionner **Deploy from a branch**, puis **main** et **/docs**. La visibilité et l’abonnement du dépôt doivent permettre GitHub Pages. Ne pas changer la visibilité du dépôt sans accord de son propriétaire.
 
-Après modification : `pnpm build`, puis copier le contenu de `dist/` dans `docs/` et enregistrer les changements.
+Après modification : `bun run build:pages`, puis copier le contenu de `dist/` dans `docs/` et enregistrer les changements.
 
 ## Périmètre du prototype
 

@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "react",
+    "typescript",
+    "oxc"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "docs/**",
+    "public/**",
+    "node_modules/**",
+    ".tools/**",
+    ".checks/**"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/refs": "off",
+    "react/set-state-in-effect": "off"
+  }
+}

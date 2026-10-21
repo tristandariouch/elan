@@ -5,3 +5,8 @@ work/
 .env
 .env.local
 .env.*.local
+
+dist/
+.tools/
+.bun/
+*.tsbuildinfo
